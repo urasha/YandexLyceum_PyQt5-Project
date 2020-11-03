@@ -4,4 +4,4 @@ Self-instruction manual for touch typing, presented in the form of playing the p
 Requirements
 -----------------------------------
 * Python 3.6 and newer
-* PyQt5 5.15.1 (recomended)
+* PyQt5 5.15.1 recommended
