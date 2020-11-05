@@ -1,2 +1,0 @@
-def launch():
-    pass
