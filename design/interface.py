@@ -2,9 +2,9 @@ import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, qApp
 from PyQt5 import uic
 from PyQt5.QtCore import Qt, QTimer
-from model.key_illumination import Illumination
+from design.key_illumination import Illumination
 import pygame
-from model.music_playback import play_song
+from design.music_playback import play_song
 
 
 class MainForm(QMainWindow):
