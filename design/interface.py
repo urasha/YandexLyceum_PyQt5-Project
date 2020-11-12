@@ -1,13 +1,13 @@
 import sys
 import pygame
-from PyQt5.QtWidgets import QApplication, QMainWindow, qApp
+from PyQt5.QtWidgets import QApplication, QMainWindow, qApp, QLabel
 from PyQt5 import uic
+from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt, QTimer
 from design.key_illumination import Illumination
 from design.music_playback import play_song
 from gameplay.random_list import create_random_list
 from gameplay.ticker import Ticker
-from gameplay.beginning_game import launch
 
 
 class MainForm(QMainWindow):
@@ -19,6 +19,7 @@ class MainForm(QMainWindow):
         # constants
         ILLUMINATION_TIME = 300
         TICKER_TIME = 2000
+        LETTER_TIME = 10
 
         self.PIANO_KEYS = [self.label_2, self.label_3, self.label_4,
                            self.label_5, self.label_6, self.label_7,
@@ -51,8 +52,14 @@ class MainForm(QMainWindow):
         # ticker
         self.ticker_timer = QTimer(self)
         self.ticker_timer.setInterval(TICKER_TIME)
+        self.ticker_timer.timeout.connect(self.create_letter)
+
+        self.letter_timer = QTimer(self)
+        self.letter_timer.setInterval(LETTER_TIME)
+        self.letter_timer.timeout.connect(self.move_all_letters)
 
         self.ticker = Ticker(create_random_list('en'))
+        self.letters = list()
 
         self.pushButton.clicked.connect(self.launch_ticker)
 
@@ -72,7 +79,21 @@ class MainForm(QMainWindow):
             play_song(str(key_index + 1) + '.wav')
 
     def launch_ticker(self):
-        pass
+        if not self.ticker_timer.isActive():
+            self.ticker_timer.start()
+            self.letter_timer.start()
+
+    def create_letter(self):
+        letter = QLabel(self.ticker.active_letter, self)
+        letter.resize(100, 100)
+        letter.move(50, 50)
+        letter.setFont(QFont('Arial', 35))
+        self.letters.append(letter)
+        self.ticker.counter += 1
+
+    def move_all_letters(self):
+        for i in self.letters:
+            self.ticker.move_letter(i)
 
 
 if __name__ == '__main__':

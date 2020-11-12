@@ -1,13 +1,12 @@
 class Ticker:
     def __init__(self, letters):
         self.letters = letters
-        self.active_letter = self.letters[0]
+        self.counter = 0
+        self.active_letter = self.letters[self.counter]
 
-    def move_letter(self):
-        pass
-
-    def remove_letter(self):
-        pass
+    @staticmethod
+    def move_letter(letter):
+        letter.move(letter.x() + 2, letter.y())
 
     def show_letter(self):
         pass
