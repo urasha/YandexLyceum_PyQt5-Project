@@ -18,7 +18,7 @@ class MainForm(QMainWindow):
 
         # constants
         ILLUMINATION_TIME = 300
-        TICKER_TIME = 2000
+        TICKER_TIME = 1500
         LETTER_TIME = 10
 
         self.PIANO_KEYS = [self.label_2, self.label_3, self.label_4,
@@ -58,9 +58,6 @@ class MainForm(QMainWindow):
         self.letter_timer.setInterval(LETTER_TIME)
         self.letter_timer.timeout.connect(self.move_all_letters)
 
-        self.ticker = Ticker(create_random_list('en'))
-        self.letters = list()
-
         self.pushButton.clicked.connect(self.launch_ticker)
 
     def keyPressEvent(self, event):
@@ -79,20 +76,29 @@ class MainForm(QMainWindow):
             play_song(str(key_index + 1) + '.wav')
 
     def launch_ticker(self):
-        if not self.ticker_timer.isActive():
+        if not (self.ticker_timer.isActive() and self.letter_timer.isActive()):
+            self.ticker = Ticker(create_random_list('en'))
+            self.letters = list()
             self.ticker_timer.start()
             self.letter_timer.start()
 
     def create_letter(self):
-        letter = QLabel(self.ticker.active_letter, self)
-        letter.resize(100, 100)
-        letter.move(50, 50)
-        letter.setFont(QFont('Arial', 35))
-        self.letters.append(letter)
-        self.ticker.counter += 1
+        if self.ticker.counter < 50:
+            letter = QLabel(self.ticker.active_letter, self)
+            letter.resize(100, 100)
+            letter.move(120, 80)
+            letter.show()
+            letter.setFont(QFont('Arial', 35))
+            self.letters.append(letter)
+            self.ticker.counter += 1
+
+        else:
+            self.ticker_timer.stop()
 
     def move_all_letters(self):
         for i in self.letters:
+            if i.x() > 800:
+                i.hide()
             self.ticker.move_letter(i)
 
 
