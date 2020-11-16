@@ -61,6 +61,7 @@ class MainForm(QMainWindow):
         self.letter_timer.timeout.connect(self.move_all_letters)
 
         self.pushButton.clicked.connect(self.launch_ticker)
+        self.pushButton_2.clicked.connect(self.restart)
 
         # music
         self.timer_music = QTimer(self)
@@ -89,6 +90,13 @@ class MainForm(QMainWindow):
             self.letters = list()
             self.ticker_timer.start()
             self.letter_timer.start()
+
+    def restart(self):
+        self.ticker_timer.stop()
+        self.letter_timer.stop()
+        for i in self.letters:
+            i.hide()
+        self.letters = list()
 
     def create_letter(self):
         if self.ticker.counter < 50:
