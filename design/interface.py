@@ -5,9 +5,10 @@ from PyQt5 import uic
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt, QTimer
 from design.key_illumination import Illumination
-from design.music_playback import play_song
+from design.music_playback import play_song, stop_timer_music
 from gameplay.random_list import create_random_list
 from gameplay.ticker import Ticker
+from gameplay.recording_and_analysis_of_points import RecordingPoints
 
 
 class MainForm(QMainWindow):
@@ -20,6 +21,7 @@ class MainForm(QMainWindow):
         ILLUMINATION_TIME = 300
         TICKER_TIME = 1500
         LETTER_TIME = 10
+        MUSUC_TIME = 200
 
         self.PIANO_KEYS = [self.label_2, self.label_3, self.label_4,
                            self.label_5, self.label_6, self.label_7,
@@ -60,20 +62,26 @@ class MainForm(QMainWindow):
 
         self.pushButton.clicked.connect(self.launch_ticker)
 
+        # music
+        self.timer_music = QTimer(self)
+        self.timer_music.setInterval(MUSUC_TIME)
+
     def keyPressEvent(self, event):
         if event.key() in self.QT_KEYS:
             if self.illumination_timer.isActive():
                 self.PIANO_KEYS[self.last_key].setStyleSheet('background: none')
+            if not self.timer_music.isActive():
+                self.illumination_timer.start()
+                key_index = self.QT_KEYS.index(event.key())
+                self.last_key = key_index
 
-            self.illumination_timer.start()
-            key_index = self.QT_KEYS.index(event.key())
-            self.last_key = key_index
+                self.timer_music.start()
+                self.illumination_timer.timeout.connect(
+                    lambda: self.illumination.stop_highlight_key(self.PIANO_KEYS[key_index]))
+                self.timer_music.timeout.connect(lambda: stop_timer_music(self.timer_music))
+                self.illumination.highlight_key(self.PIANO_KEYS[key_index])
 
-            self.illumination_timer.timeout.connect(
-                lambda: self.illumination.stop_highlight_key(self.PIANO_KEYS[key_index]))
-            self.illumination.highlight_key(self.PIANO_KEYS[key_index])
-
-            play_song(str(key_index + 1) + '.wav')
+                play_song(str(key_index + 1) + '.wav')
 
     def launch_ticker(self):
         if not (self.ticker_timer.isActive() and self.letter_timer.isActive()):
@@ -86,7 +94,7 @@ class MainForm(QMainWindow):
         if self.ticker.counter < 50:
             letter = QLabel(self.ticker.active_letter, self)
             letter.resize(100, 100)
-            letter.move(120, 80)
+            letter.move(120, 95)
             letter.show()
             letter.setFont(QFont('Arial', 35))
             self.letters.append(letter)
@@ -97,7 +105,7 @@ class MainForm(QMainWindow):
 
     def move_all_letters(self):
         for i in self.letters:
-            if i.x() > 800:
+            if i.x() > 780:
                 i.hide()
             self.ticker.move_letter(i)
 

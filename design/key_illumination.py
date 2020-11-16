@@ -4,7 +4,7 @@ class Illumination:
 
     @staticmethod
     def highlight_key(key):
-        key.setStyleSheet('background: rgba(255, 70, 70, 0.3)')
+        key.setStyleSheet('background: rgba(255, 20, 20, 0.5)')
 
     def stop_highlight_key(self, key):
         self.timer.stop()
