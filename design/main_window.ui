@@ -563,42 +563,19 @@
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="actionOpen_music_file"/>
-    <addaction name="actionClose_application_Ctrl_L"/>
-   </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>Help</string>
     </property>
     <addaction name="actionInstruction"/>
    </widget>
-   <widget class="QMenu" name="menuGame">
+   <widget class="QMenu" name="menuApp">
     <property name="title">
-     <string>Game</string>
+     <string>App</string>
     </property>
-    <widget class="QMenu" name="menuSymbols">
-     <property name="title">
-      <string>Symbols</string>
-     </property>
-     <addaction name="actionEnglish_2"/>
-     <addaction name="actionRussian_2"/>
-    </widget>
-    <widget class="QMenu" name="menuSongs">
-     <property name="title">
-      <string>Songs</string>
-     </property>
-     <addaction name="actionSong_1"/>
-     <addaction name="actionSong_2"/>
-    </widget>
-    <addaction name="menuSymbols"/>
-    <addaction name="menuSongs"/>
+    <addaction name="actionClose_Ctrl_L"/>
    </widget>
-   <addaction name="menuFile"/>
-   <addaction name="menuGame"/>
+   <addaction name="menuApp"/>
    <addaction name="menuHelp"/>
   </widget>
   <action name="actionOpen_music_file">
@@ -655,6 +632,14 @@
   <action name="actionClose_application_Ctrl_L">
    <property name="text">
     <string>Close application (Ctrl + L)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="actionClose_Ctrl_L">
+   <property name="text">
+    <string>Close (Ctrl + L)</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+L</string>
