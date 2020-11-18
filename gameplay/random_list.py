@@ -3,7 +3,7 @@ def create_random_list(language):
 
     fridge_random = list()
     letters = ''
-    NUMBER_OF_LETTERS = 50
+    NUMBER_OF_LETTERS = 25
 
     if language == 'ru':
         letters = 'йцукенгшщзхъфывапролджэячсмитьбю'
