@@ -4,9 +4,7 @@ class Ticker:
         self.counter = 0
         self.active_letter = self.letters[self.counter]
 
-    @staticmethod
-    def move_letter(letter):
+    def move_letter(self, letter):
+        if self.counter < 25:
+            self.active_letter = self.letters[self.counter]
         letter.move(letter.x() + 2, letter.y())
-
-    def show_letter(self):
-        pass
