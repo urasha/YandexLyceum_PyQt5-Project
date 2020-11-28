@@ -5,6 +5,6 @@ class Ticker:
         self.active_letter = self.letters[self.counter]
 
     def move_letter(self, letter):
-        if self.counter < 25:
+        if self.counter < len(self.letters):
             self.active_letter = self.letters[self.counter]
-        letter.move(letter.x() + 2, letter.y())
+        letter.move(letter.x() + 2 if letter.y() == 35 else letter.x() - 2, letter.y())
