@@ -1,7 +1,9 @@
 import sys
 import pygame
-from PyQt5.QtWidgets import QApplication, QMainWindow, qApp, QLabel
 from PyQt5 import uic
+from pyautogui import alert
+from random import randint
+from PyQt5.QtWidgets import QApplication, QMainWindow, qApp, QLabel, QFileDialog
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt, QTimer
 from design.key_illumination import Illumination
@@ -15,13 +17,20 @@ class MainForm(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi('main_window.ui', self)
+
+        if sys.platform == 'darwin':
+            self.setFixedSize(1152, 452)
+        else:
+            self.setFixedSize(1152, 472)
+
         pygame.init()
 
         # constants
         ILLUMINATION_TIME = 300
-        TICKER_TIME = 1500
         LETTER_TIME = 10
-        MUSUC_TIME = 700
+        MUSIC_TIME = 700
+
+        self.NUMBER_OF_LETTERS = 25
 
         self.PIANO_KEYS = [self.label_2, self.label_3, self.label_4,
                            self.label_5, self.label_6, self.label_7,
@@ -41,7 +50,13 @@ class MainForm(QMainWindow):
                         Qt.Key_B, Qt.Key_N, Qt.Key_M]
 
         # app actions
-        self.actionClose_Ctrl_L.triggered.connect(qApp.quit)
+        self.actionClose.triggered.connect(qApp.quit)
+
+        self.actionInstruction_2.triggered.connect(self.open_help)
+
+        self.actionEasy.triggered.connect(lambda: self.change_difficult('easy'))
+        self.actionMedium.triggered.connect(lambda: self.change_difficult('medium'))
+        self.actionHard.triggered.connect(lambda: self.change_difficult('hard'))
 
         # illumination
         self.illumination_timer = QTimer(self)
@@ -51,12 +66,11 @@ class MainForm(QMainWindow):
 
         self.last_key = 0
 
-        self.timer_music = QTimer(self)
-        self.timer_music.setInterval(MUSUC_TIME)
-
         # ticker
+        self.ticker_time = 1500
+
         self.ticker_timer = QTimer(self)
-        self.ticker_timer.setInterval(TICKER_TIME)
+        self.ticker_timer.setInterval(self.ticker_time)
         self.ticker_timer.timeout.connect(self.create_letter)
         self.letters = list()
 
@@ -70,33 +84,61 @@ class MainForm(QMainWindow):
 
         # result of the game
         self.result = QLabel(self)
-        self.result.resize(750, 100)
-        self.result.move(120, 15)
+        self.result.resize(1200, 100)
+        self.result.move(885, 15)
         self.result.hide()
-        self.result.setFont(QFont('Arial', 25))
+        self.result.setFont(QFont('Arial', 15))
 
         self.score = 0
+
+        # music
+        self.timer_music = QTimer(self)
+        self.timer_music.setInterval(MUSIC_TIME)
+        self.file = ''
 
     def keyPressEvent(self, event):
         if event.key() in self.QT_KEYS:
             if self.illumination_timer.isActive():
                 self.PIANO_KEYS[self.last_key].setStyleSheet('background: none')
-            if self.timer_music.isActive():
-                pass
+
             if self.check_valid(self.QT_KEYS.index(event.key())):
                 self.score += 1
-                print(self.score)
-                self.illumination_timer.start()
+
+                self.timer_music.start()
+                self.timer_music.timeout.connect(lambda: stop_timer_music(self.timer_music))
+
                 key_index = self.QT_KEYS.index(event.key())
                 self.last_key = key_index
-                self.timer_music.start()
+
+                self.illumination_timer.start()
                 self.illumination_timer.timeout.connect(
                     lambda: self.illumination.stop_highlight_key(self.PIANO_KEYS[key_index]))
-                self.timer_music.timeout.connect(lambda: stop_timer_music(self.timer_music))
                 self.illumination.highlight_key(self.PIANO_KEYS[key_index])
+
                 play_song(str(key_index + 1) + '.wav')
             else:
                 play_song('wrong.wav')
+
+    @staticmethod
+    def open_help():
+        alert("""Привет! 
+
+    Сейчас мы расскажем тебе несколько вещей, которые ты должен знать: в центре находится игровая линия, справа две кнопки. 
+    Левая начинает игру, правая преждевременно останавливает. 
+    Когда игра начнётся, буквы будут двигаться направо внутри большой чёрной линии. 
+    Если буква достигнет красной черты, ты должен нажать указанную букву, тогда засчитается очко. 
+    Всего нужно преодолеть 25 букв. 
+
+    Удачи!""")
+
+    def change_difficult(self, diff):
+        if diff == 'easy':
+            self.ticker_time = 2000
+        if diff == 'medium':
+            self.ticker_time = 1500
+        if diff == 'hard':
+            self.ticker_time = 1200
+        self.ticker_timer.setInterval(self.ticker_time)
 
     def show_label_text(self):
         self.db = PointAnalysis()
@@ -105,17 +147,22 @@ class MainForm(QMainWindow):
         self.max_score = self.db.max_score()
         self.average = round(self.db.averages_score())
         self.db.close()
-        return f'Game score: {self.score} | Max score: {self.max_score} | Average score: {self.average}'
+        return f'Now score: {self.score}\nBest score: {self.max_score}\nAverage score: {self.average}'
 
     def check_valid(self, key_index):
         if self.letters:
-            right_letter_text = self.letters[0].text()
-            press_key = chr(self.QT_KEYS[key_index])
+            self.right_letter_text = self.letters[0].text()
+            self.press_key = chr(self.QT_KEYS[key_index])
             for i in self.letters:
-                if 620 < i.x() < 700 and press_key == right_letter_text:
-                    return True
+                if i.y() != 165:
+                    return self.check_position(620, 700, i)
                 else:
-                    return False
+                    return self.check_position(220, 260, i)
+
+    def check_position(self, x1, x2, letter):
+        if x1 < letter.x() < x2 and self.press_key == self.right_letter_text:
+            return True
+        return False
 
     def stop_game(self):
         self.result.setText(self.show_label_text())
@@ -125,10 +172,12 @@ class MainForm(QMainWindow):
     def launch_ticker(self):
         if not (self.ticker_timer.isActive() and self.letter_timer.isActive()):
             self.result.hide()
-            self.ticker = Ticker(create_random_list())
+            self.ticker = Ticker(create_random_list(self.NUMBER_OF_LETTERS))
             self.ticker_timer.start()
             self.letter_timer.start()
             self.letters = list()
+            if self.file:
+                play_song(self.file)
 
     def restart(self):
         self.ticker_timer.stop()
@@ -138,27 +187,28 @@ class MainForm(QMainWindow):
             i.hide()
 
     def create_letter(self):
-        if self.ticker.counter < 25:
+        if self.ticker.counter < self.NUMBER_OF_LETTERS:
             letter = QLabel(self.ticker.active_letter, self)
             letter.resize(100, 100)
-            letter.move(120, 95)
+            if randint(0, 1):
+                letter.move(120, 35)
+            else:
+                letter.move(795, 165)
             letter.show()
             letter.setFont(QFont('Arial', 35))
             self.letters.append(letter)
             self.ticker.counter += 1
-
         else:
             self.ticker_timer.stop()
 
     def move_all_letters(self):
-        if self.letters:
-            for i in self.letters:
-                if i.x() > 780:
-                    if len(self.letters) == 1:
-                        self.stop_game()
-                    i.hide()
-                    self.letters.remove(i)
-                self.ticker.move_letter(i)
+        for i in self.letters:
+            if (i.x() > 780 and i.y() == 35) or (i.x() < 130 and i.y() == 165):
+                if len(self.letters) == 1:
+                    self.stop_game()
+                i.hide()
+                self.letters.remove(i)
+            self.ticker.move_letter(i)
 
 
 if __name__ == '__main__':

@@ -6,19 +6,23 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1152</width>
-    <height>443</height>
+    <width>1153</width>
+    <height>473</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Piano</string>
+   <string>Piano Hero</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>images/app_icon.jpg</normaloff>images/app_icon.jpg</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="Line" name="line_5">
     <property name="geometry">
      <rect>
-      <x>820</x>
-      <y>80</y>
+      <x>816</x>
+      <y>31</y>
       <width>2</width>
       <height>90</height>
      </rect>
@@ -36,8 +40,8 @@
    <widget class="Line" name="line">
     <property name="geometry">
      <rect>
-      <x>684</x>
-      <y>89</y>
+      <x>680</x>
+      <y>40</y>
       <width>3</width>
       <height>75</height>
      </rect>
@@ -55,8 +59,8 @@
    <widget class="Line" name="line_4">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>80</y>
+      <x>116</x>
+      <y>31</y>
       <width>2</width>
       <height>90</height>
      </rect>
@@ -71,8 +75,8 @@
    <widget class="Line" name="line_3">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>170</y>
+      <x>116</x>
+      <y>121</y>
       <width>702</width>
       <height>2</height>
      </rect>
@@ -87,8 +91,8 @@
    <widget class="Line" name="line_2">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>80</y>
+      <x>116</x>
+      <y>31</y>
       <width>700</width>
       <height>2</height>
      </rect>
@@ -103,8 +107,8 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>900</x>
-      <y>90</y>
+      <x>880</x>
+      <y>100</y>
       <width>71</width>
       <height>71</height>
      </rect>
@@ -135,8 +139,8 @@
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>1020</x>
-      <y>90</y>
+      <x>1000</x>
+      <y>100</y>
       <width>71</width>
       <height>71</height>
      </rect>
@@ -165,7 +169,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>248</y>
+      <y>278</y>
       <width>1200</width>
       <height>4</height>
      </rect>
@@ -181,7 +185,7 @@
     <property name="geometry">
      <rect>
       <x>-10</x>
-      <y>250</y>
+      <y>280</y>
       <width>1171</width>
       <height>171</height>
      </rect>
@@ -203,7 +207,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>419</y>
+      <y>449</y>
       <width>1200</width>
       <height>4</height>
      </rect>
@@ -219,7 +223,7 @@
     <property name="geometry">
      <rect>
       <x>18</x>
-      <y>250</y>
+      <y>280</y>
       <width>27</width>
       <height>171</height>
      </rect>
@@ -232,7 +236,7 @@
     <property name="geometry">
      <rect>
       <x>54</x>
-      <y>250</y>
+      <y>280</y>
       <width>27</width>
       <height>171</height>
      </rect>
@@ -245,7 +249,7 @@
     <property name="geometry">
      <rect>
       <x>130</x>
-      <y>250</y>
+      <y>280</y>
       <width>27</width>
       <height>171</height>
      </rect>
@@ -258,7 +262,7 @@
     <property name="geometry">
      <rect>
       <x>168</x>
-      <y>250</y>
+      <y>280</y>
       <width>26</width>
       <height>171</height>
      </rect>
@@ -271,7 +275,7 @@
     <property name="geometry">
      <rect>
       <x>206</x>
-      <y>250</y>
+      <y>280</y>
       <width>26</width>
       <height>171</height>
      </rect>
@@ -284,7 +288,7 @@
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>250</y>
+      <y>280</y>
       <width>25</width>
       <height>171</height>
      </rect>
@@ -297,7 +301,7 @@
     <property name="geometry">
      <rect>
       <x>317</x>
-      <y>250</y>
+      <y>280</y>
       <width>25</width>
       <height>171</height>
      </rect>
@@ -310,7 +314,7 @@
     <property name="geometry">
      <rect>
       <x>392</x>
-      <y>250</y>
+      <y>280</y>
       <width>26</width>
       <height>171</height>
      </rect>
@@ -323,7 +327,7 @@
     <property name="geometry">
      <rect>
       <x>429</x>
-      <y>250</y>
+      <y>280</y>
       <width>25</width>
       <height>171</height>
      </rect>
@@ -336,7 +340,7 @@
     <property name="geometry">
      <rect>
       <x>466</x>
-      <y>250</y>
+      <y>280</y>
       <width>25</width>
       <height>171</height>
      </rect>
@@ -349,7 +353,7 @@
     <property name="geometry">
      <rect>
       <x>542</x>
-      <y>250</y>
+      <y>280</y>
       <width>25</width>
       <height>171</height>
      </rect>
@@ -362,7 +366,7 @@
     <property name="geometry">
      <rect>
       <x>579</x>
-      <y>250</y>
+      <y>280</y>
       <width>25</width>
       <height>171</height>
      </rect>
@@ -375,7 +379,7 @@
     <property name="geometry">
      <rect>
       <x>655</x>
-      <y>250</y>
+      <y>280</y>
       <width>25</width>
       <height>171</height>
      </rect>
@@ -388,7 +392,7 @@
     <property name="geometry">
      <rect>
       <x>692</x>
-      <y>250</y>
+      <y>280</y>
       <width>25</width>
       <height>171</height>
      </rect>
@@ -401,7 +405,7 @@
     <property name="geometry">
      <rect>
       <x>730</x>
-      <y>250</y>
+      <y>280</y>
       <width>25</width>
       <height>171</height>
      </rect>
@@ -414,7 +418,7 @@
     <property name="geometry">
      <rect>
       <x>805</x>
-      <y>250</y>
+      <y>280</y>
       <width>25</width>
       <height>171</height>
      </rect>
@@ -427,7 +431,7 @@
     <property name="geometry">
      <rect>
       <x>843</x>
-      <y>250</y>
+      <y>280</y>
       <width>25</width>
       <height>171</height>
      </rect>
@@ -440,7 +444,7 @@
     <property name="geometry">
      <rect>
       <x>918</x>
-      <y>250</y>
+      <y>280</y>
       <width>25</width>
       <height>171</height>
      </rect>
@@ -453,7 +457,7 @@
     <property name="geometry">
      <rect>
       <x>956</x>
-      <y>250</y>
+      <y>280</y>
       <width>25</width>
       <height>171</height>
      </rect>
@@ -466,7 +470,7 @@
     <property name="geometry">
      <rect>
       <x>995</x>
-      <y>250</y>
+      <y>280</y>
       <width>24</width>
       <height>171</height>
      </rect>
@@ -479,7 +483,7 @@
     <property name="geometry">
      <rect>
       <x>1070</x>
-      <y>250</y>
+      <y>280</y>
       <width>26</width>
       <height>171</height>
      </rect>
@@ -492,7 +496,7 @@
     <property name="geometry">
      <rect>
       <x>1107</x>
-      <y>250</y>
+      <y>280</y>
       <width>25</width>
       <height>171</height>
      </rect>
@@ -505,7 +509,7 @@
     <property name="geometry">
      <rect>
       <x>105</x>
-      <y>250</y>
+      <y>280</y>
       <width>25</width>
       <height>171</height>
      </rect>
@@ -518,7 +522,7 @@
     <property name="geometry">
      <rect>
       <x>628</x>
-      <y>250</y>
+      <y>280</y>
       <width>26</width>
       <height>171</height>
      </rect>
@@ -531,7 +535,7 @@
     <property name="geometry">
      <rect>
       <x>366</x>
-      <y>250</y>
+      <y>280</y>
       <width>25</width>
       <height>171</height>
      </rect>
@@ -544,7 +548,7 @@
     <property name="geometry">
      <rect>
       <x>870</x>
-      <y>250</y>
+      <y>280</y>
       <width>23</width>
       <height>171</height>
      </rect>
@@ -553,29 +557,124 @@
      <string/>
     </property>
    </widget>
+   <widget class="Line" name="line_7">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>250</y>
+      <width>702</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string>background: black</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_9">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>160</y>
+      <width>2</width>
+      <height>90</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string>background: black</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_10">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>160</y>
+      <width>700</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string>background: black</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_11">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>169</y>
+      <width>3</width>
+      <height>75</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>ArrowCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: red</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_12">
+    <property name="geometry">
+     <rect>
+      <x>820</x>
+      <y>160</y>
+      <width>2</width>
+      <height>90</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: black</string>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1152</width>
+     <width>1153</width>
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuHelp">
-    <property name="title">
-     <string>Help</string>
-    </property>
-    <addaction name="actionInstruction"/>
-   </widget>
    <widget class="QMenu" name="menuApp">
     <property name="title">
      <string>App</string>
     </property>
-    <addaction name="actionClose_Ctrl_L"/>
+    <addaction name="actionClose"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionInstruction_2"/>
+   </widget>
+   <widget class="QMenu" name="menuDifficult">
+    <property name="title">
+     <string>Difficult</string>
+    </property>
+    <addaction name="actionEasy"/>
+    <addaction name="actionMedium"/>
+    <addaction name="actionHard"/>
    </widget>
    <addaction name="menuApp"/>
+   <addaction name="menuDifficult"/>
    <addaction name="menuHelp"/>
   </widget>
   <action name="actionOpen_music_file">
@@ -608,6 +707,9 @@
    <property name="text">
     <string>Instruction (Ctrl + H)</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
+   </property>
   </action>
   <action name="actionEnglish_2">
    <property name="text">
@@ -637,12 +739,43 @@
     <string>Ctrl+L</string>
    </property>
   </action>
-  <action name="actionClose_Ctrl_L">
+  <action name="actionClose">
    <property name="text">
-    <string>Close (Ctrl + L)</string>
+    <string>Close</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="actionInstruction_2">
+   <property name="text">
+    <string>Instruction</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
+   </property>
+  </action>
+  <action name="actionEasy">
+   <property name="text">
+    <string>Easy</string>
+   </property>
+  </action>
+  <action name="actionMedium">
+   <property name="text">
+    <string>Medium</string>
+   </property>
+  </action>
+  <action name="actionHard">
+   <property name="text">
+    <string>Hard</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
  </widget>
